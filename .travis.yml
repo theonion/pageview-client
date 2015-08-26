@@ -8,3 +8,4 @@ install:
 script:
   - py.test tests/
 sudo: false
+
