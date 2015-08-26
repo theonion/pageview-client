@@ -27,7 +27,6 @@ dev_requires = install_requires + [
     "django",
     "pytest-django",
     "pytest-cov",
-    "model_mommy",
     "mock",
     "coveralls",
 ]
