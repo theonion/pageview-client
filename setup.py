@@ -6,7 +6,12 @@ from setuptools.command.test import test as TestCommand  # noqa
 import sys
 
 
-version = "0.0.1"
+# versioning note
+# <major> . <minor> . <travis build number>
+
+version = "1.0.2"
+
+
 name = "pageview_client"
 package = "pageview_client"
 description = "clients and models for working with the pageview-* suite"
