@@ -1,4 +1,4 @@
-# pageview-client
+# pageview-client [![Build Status](https://travis-ci.org/theonion/pageview-client.svg?branch=master)](https://travis-ci.org/theonion/pageview-client)
 
 ## Run the Tests:
 
