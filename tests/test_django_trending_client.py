@@ -42,3 +42,11 @@ def test_djangotrendingclient_get():
     articles = client.get("example")
     expected = [article2, article0, article1]
     assert articles == expected
+
+    articles = client.get("example", limit=2)
+    expected = [article2, article0]
+    assert articles == expected
+
+    articles = client.get("example", limit=200)
+    expected = [article2, article0, article1]
+    assert articles == expected

@@ -157,7 +157,7 @@ class DjangoTrendingClient(TrendingClient):
         :return: a list of model instances
         :rtype: list
         """
-        content_ids = super(DjangoTrendingClient, self).get(site, offset, limit)
+        content_ids = super(DjangoTrendingClient, self).get(site, offset)
         if len(content_ids):
             bulk = self.in_bulk(content_ids)
             instances = []
