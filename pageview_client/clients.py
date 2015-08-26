@@ -6,7 +6,7 @@ import json
 
 import requests
 
-from models import Trend
+from .models import Trend
 
 
 class BasePageviewClient(object):
