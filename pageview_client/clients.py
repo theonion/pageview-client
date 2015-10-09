@@ -95,7 +95,10 @@ class TrendingClient(BasePageviewClient):
             url += "&limit={}".format(limit)
         response = requests.get(url)
         if response.ok:
-            parsed_data = json.loads(response.content)
+            try:
+                parsed_data = json.loads(response.content)
+            except (ValueError, TypeError):
+                return []
             trend_data = [Trend(**obj) for obj in parsed_data]
             self.data = dict([(t.content_id, t) for t in trend_data])
             return self.data.keys()
