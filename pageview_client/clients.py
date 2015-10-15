@@ -3,7 +3,6 @@ clients for getting and processing pageview data
 """
 
 import json
-import sys
 
 import requests
 
@@ -96,9 +95,9 @@ class TrendingClient(BasePageviewClient):
             url += "&limit={}".format(limit)
         response = requests.get(url)
         if response.ok:
-            if sys.version_info.major >= 3:
+            try:
                 parsed_data = json.loads(str(response.content, 'utf-8'))
-            else:
+            except TypeError:
                 parsed_data = json.loads(response.content)
             trend_data = [Trend(**obj) for obj in parsed_data]
             self.data = dict([(t.content_id, t) for t in trend_data])
