@@ -20,6 +20,18 @@ mock_content = json.dumps([{
     "content_id": 1,
     "score": 96
 }])
+
+mock_byte_content = json.dumps([{
+    "content_id": 3,
+    "score": 95
+}, {
+    "content_id": 5,
+    "score": 94
+}, {
+    "content_id": 4,
+    "score": 93
+}]).encode('utf-8')
+
 mock_response = Response()
 mock_response.ok = True
 mock_response.content = mock_content
@@ -31,4 +43,14 @@ def test_trendingclient_get():
     content_ids = client.get("example")
     assert len(content_ids) == 3
     for cid in (2, 0, 1):
+        assert cid in content_ids
+
+
+def test_trendingclient_get_byte_response():
+    mock_response.content = mock_byte_content
+    requests.get = MagicMock(return_value=mock_response)
+    client = TrendingClient("example.com", "hello.json")
+    content_ids = client.get("example")
+    assert len(content_ids) == 3
+    for cid in (3, 5, 4):
         assert cid in content_ids
