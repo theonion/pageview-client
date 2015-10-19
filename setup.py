@@ -9,7 +9,7 @@ import sys
 # versioning note
 # <major> . <minor> . <travis build number>
 
-version = "1.0.3"
+version = "1.0.4"
 
 
 name = "pageview_client"

@@ -99,9 +99,13 @@ class TrendingClient(BasePageviewClient):
                 parsed_data = json.loads(str(response.content, 'utf-8'))
             except TypeError:
                 parsed_data = json.loads(response.content)
-            trend_data = [Trend(**obj) for obj in parsed_data]
+            trend_data = sorted(
+                [Trend(**obj) for obj in parsed_data],
+                key=lambda trend: trend.score,
+                reverse=True
+            )
             self.data = dict([(t.content_id, t) for t in trend_data])
-            return self.data.keys()
+            return [trend.content_id for trend in trend_data]
         else:
             return []
 

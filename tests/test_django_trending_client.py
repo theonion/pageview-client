@@ -23,10 +23,6 @@ mock_content = json.dumps([{
     "content_id": 1,
     "score": 96
 }])
-mock_response = Response()
-mock_response.ok = True
-mock_response.content = mock_content
-requests.get = MagicMock(return_value=mock_response)
 
 article0 = Article(title="article 0", pk=0)
 article1 = Article(title="article 1", pk=1)
@@ -37,6 +33,11 @@ Article.objects.in_bulk = MagicMock(return_value={0: article0, 1: article1, 2: a
 
 @pytest.mark.django_db
 def test_djangotrendingclient_get():
+    mock_response = Response()
+    mock_response.ok = True
+    mock_response.content = mock_content
+    requests.get = MagicMock(return_value=mock_response)
+
     client = DjangoTrendingClient(
         Article.objects.in_bulk, Article.objects.all, hostname="example.com", endpoint="hello.json")
     articles = client.get("example")
